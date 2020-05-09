@@ -14,6 +14,7 @@ export default function MenuScreen( {navigation} ) {
       <Picker
         selectedValue={selectedValue}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        style={{marginLeft: 20, marginRight: 20, width: 250 }}
       >
         <Picker.Item label="Filter pizzas by diet" value="none"/>
         <Picker.Item label="Vegetarian" value="vegetarian"/>

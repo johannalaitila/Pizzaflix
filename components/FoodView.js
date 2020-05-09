@@ -38,7 +38,9 @@ export default function FoodView( props ){
                 : random === 8
                 ? require('../assets/images/pizza8.jpg')
                 : require('../assets/images/pizza9.jpg')
-            } style={styles.image} />
+            } 
+            style={styles.image}
+            resizeMode='contain'/>
           </View>
         </View>
     );
