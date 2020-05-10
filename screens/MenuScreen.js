@@ -4,32 +4,50 @@ import { ScrollView } from 'react-native-gesture-handler';
 import FoodView from '../components/FoodView';
 import IncomingOrderBar from '../components/IncomingOrderBar';
 
-
 export default function MenuScreen( {navigation} ) {
   let random = 1;
   
-  const [selectedValue, setSelectedValue] = useState("none");
+  const [selectedCategory, setSelectedCategory] = useState("none");
+  const [selectedDiet, setSelectedDiet] = useState("none");
+
   return (
     <View style={styles.container}>
+      <View style={{flexDirection: 'row'}}>
       <Picker
-        selectedValue={selectedValue}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-        style={{marginLeft: 20, marginRight: 20, width: 250 }}
+        selectedValue={selectedCategory}
+        onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
+        style={{marginLeft: 13, width: 190 }}
       >
-        <Picker.Item label="Filter pizzas by diet" value="none"/>
+        <Picker.Item label="Filter by category" value="none"/>
+        <Picker.Item label="Pizza" value="pizza"/>
+        <Picker.Item label="Drink" value="drink"/>
+      </Picker>
+      <Picker
+        selectedValue={selectedDiet}
+        onValueChange={(itemValue, itemIndex) => setSelectedDiet(itemValue)}
+        style={{marginLeft: -10, width: 170 }}
+      >
+        <Picker.Item label="Filter by diet" value="none"/>
         <Picker.Item label="Vegetarian" value="vegetarian"/>
         <Picker.Item label="Vegan" value="vegan"/>
         <Picker.Item label="Gluten free" value="glutenfree"/>
         <Picker.Item label="Keto" value="keto"/>
         <Picker.Item label="Hungover" value="hungover"/>
       </Picker>
+      </View>
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View style={styles.foodCategory}>
         <Text style={styles.foodCategoryText}>Pizzas</Text>
-        <FoodView name='Vegetariana' description='Mushrooms, Bell pepper, Onion, Pineapple' price='8,50'/>
-        <FoodView name='Americana' description='Ham, Pineapple, Blue cheese' price='8,00'/>
-        <FoodView name='Vegetariana' description='Mushrooms, Bell pepper, Onion, Pineapple' price='8,50'/>
-        <FoodView name='Americana' description='Ham, Pineapple, Blue cheese' price='8,00'/>
+        <FoodView 
+          name='Vegetariana' 
+          toppings={['Mushrooms', 'Bell pepper', 'Onion', 'Pineapple']}
+          price='8,50'
+          vegetarian={true}
+          />
+        <FoodView
+          name='Americana'
+          toppings={['Ham', 'Pineapple', 'Blue cheese']}
+          price='8,00'/>
       </View>   
       <View style={styles.foodCategory}>
         <Text style={styles.foodCategoryText}>Drinks</Text>

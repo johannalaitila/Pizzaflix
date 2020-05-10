@@ -1,69 +1,119 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, Button, Picker } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
-export default function FoodScreen() {
+export default function FoodScreen({ route} ) {
+  let random = 1;
+  const { name } = route.params;
+  const { toppings } = route.params
+  const { price } = route.params;
+  const { vegan } = route.params;
+  const { vegetarian } = route.params;
+
+  const [whereToEat, setWhereToEat] = useState("none");
+
+
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <OptionButton
-        icon="md-school"
-        label="Something"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
-
-
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      />
-    </ScrollView>
-  );
-}
-
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-        </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
+    <View style={styles.container}>
+      <View style={styles.row}>
+        <Text style={styles.dietText}>
+          {vegan ? 'Vegan ' : ''}
+          {vegetarian ? 'Vegetarian ' : ''}
+        </Text>
+        <Text style={{fontWeight: 'bold'}}>{price} &euro;</Text>
       </View>
-    </RectButton>
+      <Text style={styles.descriptionText}>
+          Additional description about the pizza is placed here. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </Text>
+      <View style={styles.row}>
+        <View style={{width: 180}}>
+        {toppings?.map((topping) => <Text>{topping}</Text>)} 
+        </View>
+
+        <Image source={ 
+          random = Math.floor(Math.random() * 9) + 1,
+          random === 1
+          ? require('../assets/images/pizza1.jpg')
+          : random === 2
+          ? require('../assets/images/pizza2.jpg')
+          : random === 3
+          ? require('../assets/images/pizza3.jpg')
+          : random === 4
+          ? require('../assets/images/pizza4.jpg')
+          : random === 5
+          ? require('../assets/images/pizza5.jpg')
+          : random === 6
+          ? require('../assets/images/pizza6.jpg')
+          : random === 7
+          ? require('../assets/images/pizza7.jpg')
+          : random === 8
+          ? require('../assets/images/pizza8.jpg')
+          : require('../assets/images/pizza9.jpg')
+          } 
+          style={styles.image}
+          resizeMode='contain'/>
+      </View>
+      <View style={styles.row}>
+          <Button title={"Edit"} buttonStyle={{marginTop: '50px'}} />
+          <Text>  </Text>
+          <Button title={"Set as favourite"} buttonStyle={styles.button}/>
+      </View>
+      <View style={styles.row}>
+          <Text style={{fontWeight: 'bold'}}>Where do you want to eat?</Text>
+          <Picker
+            selectedValue={whereToEat}
+            onValueChange={(itemValue, itemIndex) => setWhereToEat(itemValue)}
+            style={{marginLeft: 0, width: 150 }}
+          >
+        <Picker.Item label="Choose" value="none"/>
+        <Picker.Item label="At the restaurant" value="pizza"/>
+        <Picker.Item label="Delivery" value="drink"/>
+      </Picker>
+      </View>
+      <View style={styles.row}>
+          <Text style={{fontWeight: 'bold'}}>Where do you want to eat?</Text>
+      </View>
+    </View>
   );
 }
+
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fafafa',
+  container:{
+      margin: 10,
   },
-  contentContainer: {
-    paddingTop: 15,
+  info:{
+      margin: 10,
+      width: 220
   },
-  optionIconContainer: {
-    marginRight: 12,
+  nameText:{
+      fontWeight: 'bold',
+      fontSize: 18,
+      marginBottom: 5
   },
-  option: {
-    backgroundColor: '#fdfdfd',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: 0,
-    borderColor: '#ededed',
+  imageContainer:{
+      marginLeft: 'auto',
+      marginRight: 10,
+      marginTop: 10,
+      marginBottom: 10
+      
   },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
+  image:{
+      width: 150,
+      height: 150
   },
-  optionText: {
-    fontSize: 15,
-    alignSelf: 'flex-start',
-    marginTop: 1,
+  dietText:{
+      color: 'green',
+      fontWeight: 'bold'
   },
+  descriptionText:{
+      fontStyle: 'italic',
+  },
+  row:{
+    flexDirection: 'row',
+    marginTop: 5
+  }
 });

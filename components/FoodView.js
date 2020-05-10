@@ -6,16 +6,29 @@ var random = 0;
 
 export default function FoodView( props ){
     const navigation = useNavigation()
+    const toppings = props.toppings
     return (
         <View 
             style={styles.container} 
             onStartShouldSetResponder={() => {return true}}
-            onResponderRelease={() => navigation.navigate('ViewOrderScreen')}
+            onResponderRelease={() => navigation.navigate('FoodScreen', {
+                name: props.name,
+                toppings: toppings,
+                price: props.price,
+                vegan: props.vegan,
+                vegetarian: props.vegetarian
+            })}
             >
           <View style={styles.info}>
             <Text style={styles.nameText}>{props.name}</Text>
-            <Text>{props.description}</Text>
-            <Text>{props.price} &euro;</Text>
+            {toppings?.map((topping) => <Text style={styles.descriptionText}>{topping}</Text>)}
+            <View style={{flexDirection: 'row'}}>
+                <Text style={{marginTop: 5, marginRight: 5}}>{props.price} &euro;</Text>
+                <Text style={styles.dietText}>
+                    {props.vegan ? 'Vegan ' : ''}
+                    {props.vegetarian ? 'Vegetarian ' : ''}
+                </Text>
+            </View>
           </View>
           <View style={styles.imageContainer}>
               
@@ -58,7 +71,9 @@ const styles = StyleSheet.create({
         width: 220
     },
     nameText:{
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginBottom: 5
     },
     imageContainer:{
         marginLeft: 'auto',
@@ -70,6 +85,14 @@ const styles = StyleSheet.create({
     image:{
         width: 100,
         height: 100
+    },
+    dietText:{
+        fontWeight: 'bold',
+        marginTop: 5,
+        color: 'green'
+    },
+    descriptionText:{
+        fontStyle: 'italic',
     }
 
 });

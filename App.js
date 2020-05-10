@@ -21,11 +21,15 @@ function MenuStack(){
   return(
     <Stack.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: true
       }}
     >
-      <Stack.Screen name="MenuScreen" component={MenuScreen} />
-      <Stack.Screen name="FoodScreen" component={FoodScreen} />
+      <Stack.Screen name="Menu" component={MenuScreen} />
+      <Stack.Screen 
+        name="FoodScreen"
+        component={FoodScreen}
+        options={({ route }) => ({ title: route.params.name })}
+      />
       <Stack.Screen name="ViewOrderScreen" component={ViewOrderScreen} />
       <Stack.Screen name="TrackOrderScreen" component={TrackOrderScreen} />
     </Stack.Navigator>
@@ -36,21 +40,26 @@ function EverythingStack(){
   return(
     <Stack.Navigator
       screenOptions={{
-        headerShown: false
+        headerShown: true
       }}
     >
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="HomeScreen" options={{headerShown: false}} component={HomeScreen} />
       <Stack.Screen name="MenuScreen" component={MenuScreen} />
-      <Stack.Screen name="FoodScreen" component={FoodScreen} />
+      <Stack.Screen
+        name="FoodScreen"
+        component={FoodScreen}
+        options={({ route }) => ({ title: route.params.name })}
+        />
       <Stack.Screen name="ViewOrderScreen" component={ViewOrderScreen} />
       <Stack.Screen name="TrackOrderScreen" component={TrackOrderScreen} />
     </Stack.Navigator>
   )
 }
 
+
 export default function App() {
   return (
-    <View style={{ marginTop: 30, flex: 1 }}>
+    <View style={{flex: 1 }}>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => (
