@@ -1,5 +1,5 @@
-import React, { PropTypes, Component } from 'react';
-import { TouchableHighlight, Image, Button, Text, View, StyleSheet } from 'react-native';
+import React from 'react';
+import { Image, Text, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 var random = 0;

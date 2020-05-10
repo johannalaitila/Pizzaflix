@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Picker, Image, Platform, StyleSheet, Text, TouchableOpacity, View, Button } from 'react-native';
+import { Picker, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import FoodView from '../components/FoodView';
 import IncomingOrderBar from '../components/IncomingOrderBar';
+import ViewOrderBar from "../components/ViewOrderBar";
 
-export default function MenuScreen( {navigation} ) {
-  let random = 1;
+export default function MenuScreen( ) {
   
   const [selectedCategory, setSelectedCategory] = useState("none");
   const [selectedDiet, setSelectedDiet] = useState("none");
@@ -15,7 +15,7 @@ export default function MenuScreen( {navigation} ) {
       <View style={{flexDirection: 'row'}}>
       <Picker
         selectedValue={selectedCategory}
-        onValueChange={(itemValue, itemIndex) => setSelectedCategory(itemValue)}
+        onValueChange={(itemValue) => setSelectedCategory(itemValue)}
         style={{marginLeft: 13, width: 190 }}
       >
         <Picker.Item label="Filter by category" value="none"/>
@@ -24,7 +24,7 @@ export default function MenuScreen( {navigation} ) {
       </Picker>
       <Picker
         selectedValue={selectedDiet}
-        onValueChange={(itemValue, itemIndex) => setSelectedDiet(itemValue)}
+        onValueChange={(itemValue) => setSelectedDiet(itemValue)}
         style={{marginLeft: -10, width: 170 }}
       >
         <Picker.Item label="Filter by diet" value="none"/>
@@ -54,6 +54,7 @@ export default function MenuScreen( {navigation} ) {
         <FoodView name='Water' description='0,25 dl' price='2,00'/>
       </View>       
     </ScrollView>
+    <ViewOrderBar />
     <IncomingOrderBar />
   </View>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Text, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { getItemCount } from './Order';
 
 var enabled = false;
 
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     },
   });
 
-export default function IncomingOrderBar(){
+export default function ViewOrderBar(props){
   const navigation = useNavigation()
   if(!enabled) return(<View /> )
   else return(
@@ -44,17 +45,18 @@ export default function IncomingOrderBar(){
       <View style={styles.tabBarInfoContainer}>
           <View style={{flexDirection:"row"}}>
           <View>
-              <Text style={styles.incomingOrderText}>Your order will arrive in: 25 minutes</Text>
+              <Text style={styles.incomingOrderText}>You have {getItemCount()} items in your order</Text>
           </View>
           
           <View style={{marginBottom: 0, marginLeft: 10}}>
-              <Button title="View" color="#841584" onPress={() => navigation.navigate('TrackOrderScreen')} />
+              <Button title="View" color="#841584" onPress={() => navigation.navigate('ViewOrderScreen')} />
           </View>
           </View>
       </View>
   )
 }
 
-export function setEnabled(isEnabled){
-  enabled = isEnabled
+export function setOrderBarEnabled(isEnabled){
+  //enabled = isEnabled
+  //alert('Bar' + enabled)
 }

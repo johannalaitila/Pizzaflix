@@ -1,10 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Button, Picker } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import * as Order from '../components/Order.js';
 
-export default function FoodScreen({ route} ) {
+export default function FoodScreen({ navigation, route} ) {
   let random = 1;
   const { name } = route.params;
   const { toppings } = route.params
@@ -13,7 +11,6 @@ export default function FoodScreen({ route} ) {
   const { vegetarian } = route.params;
 
   const [whereToEat, setWhereToEat] = useState("none");
-
 
   return (
     <View style={styles.container}>
@@ -65,8 +62,8 @@ export default function FoodScreen({ route} ) {
           <Text style={{fontWeight: 'bold'}}>Where do you want to eat?</Text>
           <Picker
             selectedValue={whereToEat}
-            onValueChange={(itemValue, itemIndex) => setWhereToEat(itemValue)}
-            style={{marginLeft: 0, width: 150 }}
+            onValueChange={(itemValue) => setWhereToEat(itemValue)}
+            style={{marginLeft: 0, width: 160 }}
           >
         <Picker.Item label="Choose" value="none"/>
         <Picker.Item label="At the restaurant" value="pizza"/>
@@ -74,7 +71,17 @@ export default function FoodScreen({ route} ) {
       </Picker>
       </View>
       <View style={styles.row}>
-          <Text style={{fontWeight: 'bold'}}>Where do you want to eat?</Text>
+        <Button title={"-"} buttonStyle={styles.button}/>
+        <Text>1  pcs</Text>
+        <Button title={"+"} buttonStyle={styles.button}/>
+        <Text> </Text>
+        <Button
+          title={"Add to order"}
+          buttonStyle={styles.button}
+          onPress={() => {
+            Order.addToOrder(name, price)
+            navigation.navigate('ViewOrderScreen')
+        }}/>
       </View>
     </View>
   );

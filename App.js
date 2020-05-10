@@ -10,12 +10,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { View } from 'react-native';
-import IncomingOrderBar from './components/IncomingOrderBar';
-
-
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
 
 function MenuStack(){
   return(
@@ -24,17 +22,24 @@ function MenuStack(){
         headerShown: true
       }}
     >
-      <Stack.Screen name="Menu" component={MenuScreen} />
+      <Stack.Screen 
+        name="Menu"
+        component={MenuScreen} />
       <Stack.Screen 
         name="FoodScreen"
         component={FoodScreen}
         options={({ route }) => ({ title: route.params.name })}
       />
-      <Stack.Screen name="ViewOrderScreen" component={ViewOrderScreen} />
+      <Stack.Screen 
+        name="ViewOrderScreen"
+        component={ViewOrderScreen}
+        options={{ title:'Your order' } }
+        title='Your order'/>
       <Stack.Screen name="TrackOrderScreen" component={TrackOrderScreen} />
     </Stack.Navigator>
   )
 }
+
 
 function EverythingStack(){
   return(
@@ -43,19 +48,43 @@ function EverythingStack(){
         headerShown: true
       }}
     >
-      <Stack.Screen name="HomeScreen" options={{headerShown: false}} component={HomeScreen} />
-      <Stack.Screen name="MenuScreen" component={MenuScreen} />
+      <Stack.Screen 
+        name="HomeScreen"
+        options={{headerShown: false}}
+        component={HomeScreen} />
+      <Stack.Screen
+        name="MenuScreen"
+        component={MenuScreen} />
       <Stack.Screen
         name="FoodScreen"
         component={FoodScreen}
         options={({ route }) => ({ title: route.params.name })}
         />
-      <Stack.Screen name="ViewOrderScreen" component={ViewOrderScreen} />
-      <Stack.Screen name="TrackOrderScreen" component={TrackOrderScreen} />
+      <Stack.Screen 
+        name="ViewOrderScreen"
+        options={{ title:'Your order' } }
+        title='Your order'
+        component={ViewOrderScreen} />
+      <Stack.Screen
+        name="TrackOrderScreen"
+        component={TrackOrderScreen} />
     </Stack.Navigator>
   )
 }
 
+function ProfileStack(){
+  return(
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: true
+      }}
+    >
+      <Stack.Screen 
+        name="Hello, Johanna!"
+        component={ProfileScreen}/>
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
   return (
@@ -86,11 +115,10 @@ export default function App() {
               activeTintColor: 'tomato',
               inactiveTintColor: 'gray',
             }
-          }
-        >
+          }>
           <Tab.Screen name="Home" component={EverythingStack} />
           <Tab.Screen name="Menu" component={MenuStack} />
-          <Tab.Screen name="Profile" component={ProfileScreen} />
+          <Tab.Screen name="Profile" component={ProfileStack} title="Hello, Johanna!"/>
         </Tab.Navigator>
       </NavigationContainer>
     </View>

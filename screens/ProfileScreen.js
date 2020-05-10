@@ -3,6 +3,7 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import IncomingOrderBar from '../components/IncomingOrderBar';
+import ViewOrderBar from '../components/ViewOrderBar';
 
 export default function ProfileScreen() {
   return (
@@ -24,6 +25,8 @@ export default function ProfileScreen() {
           isLastOption
         />
       </ScrollView>
+      <ViewOrderBar/>
+      <IncomingOrderBar />
       </View>
   );
 }

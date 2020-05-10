@@ -1,13 +1,13 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import * as Order from '../components/Order.js';
+import { Text, View } from 'react-native';
 
 export default function ViewOrderScreen() {
+  let order = Order.getItems()
+
   return (
     <View>
-      <Text>Still empty ordering screen...</Text>
+      {order?.map((item) => <Text>Item: {item}</Text>)} 
     </View>
   );
 }

@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import IncomingOrderBar from '../components/IncomingOrderBar';
 import FoodView from '../components/FoodView';
+import ViewOrderBar from '../components/ViewOrderBar';
+
+const splash = require('../assets/splash.png');
 
 export default function HomeScreen({navigation}) {
     return (
       <View style={styles.container}>
-        <Image source={require('../assets/splash.png')} style= {{width: undefined, height: 50, marginTop: 30} }resizeMode='contain' />
+        <Image source={splash} style= {{width: undefined, height: 50, marginTop: 30} }resizeMode='contain' />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.foodCategory}>
             <Text style={styles.foodCategoryText}>Order Again</Text>
@@ -48,6 +51,7 @@ export default function HomeScreen({navigation}) {
               price='7,50'/>
           </View>         
         </ScrollView>
+        <ViewOrderBar/>
         <IncomingOrderBar />
       </View>
     );
