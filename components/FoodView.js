@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { Image, Text, View, Button } from 'react-native';
-    import { Styles } from './Styles';
+import { Image, Text, View, Button, addons } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-
+import { Styles } from './Styles';
+import { addToOrder } from './Order';
 
 function chooseRandomImage(){
     let random = 1
@@ -63,12 +63,6 @@ function expandedView(name, toppings, price, vegan, vegetarian){
     )
 }
 
-function minimizedViewTitle(name){
-    return( 
-        <Text style={Styles.foodNameText}>{name}</Text>
-    )
-}
-
 function expandedViewTitle(name, price, vegan, vegetarian){
     return( 
         <View>
@@ -90,49 +84,54 @@ function expandedViewTitle(name, price, vegan, vegetarian){
     )
 }
 
-function expandedViewButtons(orderAmountValue){
-    return(
-        <View>
-            <View style={Styles.row}>
-                <View style={{ width: "45%"}}>
-                    <Button
-                    title="Edit"
-                    color="#FF3D00"
-                    />
-                </View>
-                <View style={{ width: "50%", marginLeft: 15}}>
-                    <Button
-                    title="Set as favourite"
-                    color="#FF3D00"
-                    />
-                </View>
-            </View>
-            <View style={Styles.row}>
-                <TextInput
-                    style={Styles.orderAmountTextInput}
-                    onChangeText={text => onAmountTextChange(text)}
-                    value={orderAmountValue}
-                />
-                <Text style={{marginTop: 10}}> pcs </Text>
-                <Button title="+" />
-                <View style={Styles.alignRight}>
-                <View style={{ width: "75%" }}>
-                    <Button
-                    title="Add to Order"
-                    color="#FF3D00"
-                    />
-                </View>
-                    
-                </View>
-            </View>
-        </View>
-    )
-}
-
 export default function FoodView( props ){
     const [expanded, setExpanded] = useState(false)
     const [orderAmountValue, onAmountTextChange] = React.useState('1');
-   
+    
+    const addToCart = () => {
+        const orderItem = {name: props.name, price: props.price};
+        addToOrder(props.name, props.price)
+    }
+
+    function expandedViewButtons(){
+        return(
+            <View>
+                <View style={Styles.row}>
+                    <View style={{ width: "45%"}}>
+                        <Button
+                        title="Edit"
+                        color="#FF3D00"
+                        />
+                    </View>
+                    <View style={{ width: "50%", marginLeft: 15}}>
+                        <Button
+                        title="Set as favourite"
+                        color="#FF3D00"
+                        />
+                    </View>
+                </View>
+                <View style={Styles.row}>
+                    <TextInput
+                        style={Styles.orderAmountTextInput}
+                        onChangeText={text => onAmountTextChange(text)}
+                        value={orderAmountValue}
+                    />
+                    <Text style={{marginTop: 10}}> pcs </Text>
+                    <Button title="+" />
+                    <View style={Styles.alignRight}>
+                    <View style={{ width: "75%" }}>
+                        <Button
+                            title="Add to Order"
+                            color="#FF3D00"
+                            onPress={addToCart}
+                        />
+                    </View> 
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
     return (
         <View 
             style={Styles.foodViewContainer} 
@@ -141,7 +140,7 @@ export default function FoodView( props ){
             
             {expanded ? 
             expandedViewTitle(props.name, props.price, props.vegan, props.vegetarian) 
-            : minimizedViewTitle(props.name)}
+            : <Text style={Styles.foodNameText}>{props.name}</Text>}
 
             <View style={Styles.row}>
                 {expanded ? 
@@ -156,7 +155,7 @@ export default function FoodView( props ){
                 </View>
             </View>
 
-            {expanded? expandedViewButtons(orderAmountValue) : null}
+            {expanded? expandedViewButtons() : null}
 
         </View>
     );

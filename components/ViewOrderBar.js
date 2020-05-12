@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Text, View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { getItemCount } from './Order';
+import { getNumberOfItemsInOrder } from './Order';
 
-var enabled = false;
+var enabled = true;
 
 const styles = StyleSheet.create({
     incomingOrderText:{
@@ -45,7 +45,7 @@ export default function ViewOrderBar(props){
       <View style={styles.tabBarInfoContainer}>
           <View style={{flexDirection:"row"}}>
           <View>
-              <Text style={styles.incomingOrderText}>You have {getItemCount()} items in your order</Text>
+              <Text style={styles.incomingOrderText}>You have {getNumberOfItemsInOrder()} items in your order</Text>
           </View>
           
           <View style={{marginBottom: 0, marginLeft: 10}}>
@@ -54,9 +54,4 @@ export default function ViewOrderBar(props){
           </View>
       </View>
   )
-}
-
-export function setOrderBarEnabled(isEnabled){
-  //enabled = isEnabled
-  //alert('Bar' + enabled)
 }

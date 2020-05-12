@@ -1,33 +1,13 @@
-import { setOrderBarEnabled } from "./ViewOrderBar";
+var order = []
 
-var items = [];
-var itemPrices = [];
-var value = 0;
+export function getOrder(){
+    return order;
+}
 
 export function addToOrder(name, price){
-    items.push(name);
-    itemPrices.push(price)
-    value += parseFloat(price)
-    setBarVisibility()
+    order.push([name, price])
 }
 
-export function removeFromOrder(){
-    setBarVisibility()
-}
-
-export function getItemCount(){
-    return items.length;
-}
-
-export function getItems(){
-    return items;
-}
-
-export function getOrderValue(){
-    return value;
-}
-
-function setBarVisibility(){
-    if(items.length > 0) setOrderBarEnabled(true);
-    else setOrderBarEnabled(false)
+export function getNumberOfItemsInOrder(){
+    return order.length;
 }
