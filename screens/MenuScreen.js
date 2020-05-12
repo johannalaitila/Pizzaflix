@@ -10,7 +10,7 @@ export default function MenuScreen( ) {
   
   const [selectedCategory, setSelectedCategory] = useState("none");
   const [selectedDiet, setSelectedDiet] = useState("none");
-  const [value, onChangeText] = React.useState('Useless Placeholder');
+  const [searchValue, onSearchTextChange] = React.useState('Useless Placeholder');
 
   return (
     <View style={Styles.container}>
@@ -37,8 +37,8 @@ export default function MenuScreen( ) {
         <View style={Styles.rowMargin20}>
         <TextInput
           style={Styles.foodSearchTextInput}
-          onChangeText={text => onChangeText(text)}
-          value={value}
+          onChangeText={text => onSearchTextChange(text)}
+          value={searchValue}
         />
           <Button title="Search" />
         </View>

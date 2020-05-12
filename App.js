@@ -1,19 +1,18 @@
 import React from 'react';
+import { View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
 import FoodScreen from './screens/FoodScreen';
 import ViewOrderScreen from './screens/ViewOrderScreen';
 import TrackOrderScreen from './screens/TrackOrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons';
-import { View } from 'react-native';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
 
 function MenuStack(){
   return(
@@ -39,7 +38,6 @@ function MenuStack(){
     </Stack.Navigator>
   )
 }
-
 
 function EverythingStack(){
   return(
