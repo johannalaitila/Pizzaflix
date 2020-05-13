@@ -160,3 +160,80 @@ export default function FoodView( props ){
         </View>
     );
 }
+
+export function DrinkView( props ){
+    const [expanded, setExpanded] = useState(false)
+    const [orderAmountValue, onAmountTextChange] = React.useState('1');
+    
+    const addToCart = () => {
+        const orderItem = {name: props.name, price: props.price};
+        addToOrder(props.name, props.price)
+    }
+
+    function expandedViewButtons(){
+        return(
+            <View>
+                <View style={Styles.row}>
+                    <View style={{ width: "45%"}}>
+                        <Button
+                        title="Edit"
+                        color="#FF3D00"
+                        />
+                    </View>
+                    <View style={{ width: "50%", marginLeft: 15}}>
+                        <Button
+                        title="Set as favourite"
+                        color="#FF3D00"
+                        />
+                    </View>
+                </View>
+                <View style={Styles.row}>
+                    <TextInput
+                        style={Styles.orderAmountTextInput}
+                        onChangeText={text => onAmountTextChange(text)}
+                        value={orderAmountValue}
+                    />
+                    <Text style={{marginTop: 10}}> pcs </Text>
+                    <Button title="+" />
+                    <View style={Styles.alignRight}>
+                    <View style={{ width: "75%" }}>
+                        <Button
+                            title="Add to Order"
+                            color="#FF3D00"
+                            onPress={addToCart}
+                        />
+                    </View> 
+                    </View>
+                </View>
+            </View>
+        )
+    }
+
+    return (
+        <View 
+            style={Styles.foodViewContainer} 
+            onStartShouldSetResponder={() => {return true}}
+            onResponderRelease={() => { setExpanded(!expanded) }}>
+            
+            {expanded ? 
+            expandedViewTitle(props.name, props.price, props.vegan, props.vegetarian) 
+            : <Text style={Styles.foodNameText}>{props.name}</Text>}
+
+            <View style={Styles.row}>
+                {expanded ? 
+                    expandedView(props.name, props.toppings, props.price, props.vegan, props.vegetarian)
+                    : minimizedView(props.name, props.toppings, props.price, props.vegan, props.vegetarian)
+                }
+            
+                <View style={Styles.foodViewImageContainer}>
+                    <Image source={chooseRandomImage()} 
+                    style={Styles.foodViewImage}
+                    resizeMode='contain'/>
+                </View>
+            </View>
+
+            {expanded? expandedViewButtons() : null}
+
+        </View>
+    );
+}

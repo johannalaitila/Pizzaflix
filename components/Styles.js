@@ -16,9 +16,12 @@ export const Styles = StyleSheet.create({
       flexDirection: 'row',
       marginTop: 5
     },
+    rowCell:{
+      flex: 1,
+    },
     rowMargin20:{
       flexDirection: 'row',
-      margin: 20
+      margin: 10
     },
     alignRight:{
       flex: 1,
@@ -89,11 +92,15 @@ export const Styles = StyleSheet.create({
 
     // MenuScreen
     foodFilterDropdown: {
-      marginLeft: 10
+      marginLeft: 10,
+      marginRight: 10,
+      marginBottom: 10,
+      borderColor: 'gray',
+      borderWidth: 1
     },
     foodSearchTextInput: {
-      paddingLeft: 10,
-      paddingRight: 10,
+      //marginLeft: 10,
+      //paddingRight: 10,
       height: 40, 
       width: 250,
       borderColor: 'gray',

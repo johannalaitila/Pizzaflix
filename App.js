@@ -6,7 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import MenuScreen from './screens/MenuScreen';
-import FoodScreen from './screens/FoodScreen';
 import ViewOrderScreen from './screens/ViewOrderScreen';
 import TrackOrderScreen from './screens/TrackOrderScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -25,16 +24,14 @@ function MenuStack(){
         name="Menu"
         component={MenuScreen} />
       <Stack.Screen 
-        name="FoodScreen"
-        component={FoodScreen}
-        options={({ route }) => ({ title: route.params.name })}
-      />
-      <Stack.Screen 
         name="ViewOrderScreen"
         component={ViewOrderScreen}
-        options={{ title:'Your order' } }
+        options={{ title:'Your order' }}
         title='Your order'/>
-      <Stack.Screen name="TrackOrderScreen" component={TrackOrderScreen} />
+      <Stack.Screen name="TrackOrderScreen" 
+        component={TrackOrderScreen} 
+        options={{ title:'Order #123' }}
+        title='Order #123'/>
     </Stack.Navigator>
   )
 }
@@ -53,11 +50,6 @@ function EverythingStack(){
       <Stack.Screen
         name="MenuScreen"
         component={MenuScreen} />
-      <Stack.Screen
-        name="FoodScreen"
-        component={FoodScreen}
-        options={({ route }) => ({ title: route.params.name })}
-        />
       <Stack.Screen 
         name="ViewOrderScreen"
         options={{ title:'Your order' } }
@@ -65,7 +57,9 @@ function EverythingStack(){
         component={ViewOrderScreen} />
       <Stack.Screen
         name="TrackOrderScreen"
-        component={TrackOrderScreen} />
+        component={TrackOrderScreen}
+        options={{ title:'Order #123' }}
+        title='Order #123'/>
     </Stack.Navigator>
   )
 }
@@ -78,7 +72,7 @@ function ProfileStack(){
       }}
     >
       <Stack.Screen 
-        name="Hello, Johanna!"
+        name="Profile"
         component={ProfileScreen}/>
     </Stack.Navigator>
   )

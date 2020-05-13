@@ -24,11 +24,11 @@ export default function HomeScreen() {
           <FoodView
             name='Fantasia'
             toppings={['Select topping 1', 'Select topping 2', 'Select topping 3', 'Select topping 4']}
-            price='9,00'/>
+            price={9.00}/>
           <FoodView
             name='Americana'
             toppings={['Ham', 'Pineapple', 'Blue cheese']}
-            price='8,00'/>
+            price={8.00}/>
         </View>
 
         <View style={Styles.leftRightMargins}>
@@ -36,28 +36,28 @@ export default function HomeScreen() {
           <FoodView 
             name='Speciale'
             toppings={['Tuna', 'Shrimp', 'Olives', 'Pineapple']}
-            price='8,50'/>
+            price={8.50}/>
           <FoodView 
             name='Kebab'
             toppings={['Kebab', 'Mayonnaise']}
-            price='8,00'/>
+            price={8.00}/>
         </View>    
 
         <View style={Styles.leftRightMargins}>
           <Text style={Styles.categoryText}>The most popular</Text>
           <FoodView
-            name='Vegetariana'
+            name='Vegan'
             toppings={['Mushrooms', 'Bell pepper', 'Onion', 'Pineapple']}
-            price='8,50'
+            price={8.50}
             vegan={true}/>
           <FoodView
             name='Opera'
             toppings={['Ham', 'Tuna']}
-            price='8,00'/>
+            price={8.00}/>
           <FoodView
-            name='Margharita'
-            description='Double Cheese'
-            price='7,50'/>
+            name='Margherita'
+            toppings={['Double Cheese']}
+            price={7.50}/>
         </View>         
       </ScrollView>
       <ViewOrderBar/>
