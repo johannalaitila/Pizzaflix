@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,16 +22,45 @@ function MenuStack(){
     >
       <Stack.Screen 
         name="Menu"
-        component={MenuScreen} />
+        component={MenuScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: '#1c1c1c',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        />
       <Stack.Screen 
         name="ViewOrderScreen"
-        component={ViewOrderScreen}
-        options={{ title:'Your order' }}
-        title='Your order'/>
-      <Stack.Screen name="TrackOrderScreen" 
-        component={TrackOrderScreen} 
-        options={{ title:'Order #123' }}
-        title='Order #123'/>
+        options={{
+          title: 'Your order',
+          headerStyle: {
+            backgroundColor: '#1c1c1c',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        title='Your order'
+        component={ViewOrderScreen} />
+      <Stack.Screen 
+        name="TrackOrderScreen"
+        options={{
+          title: 'Order #123',
+          headerStyle: {
+            backgroundColor: '#1c1c1c',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        title='Order #123'
+        component={TrackOrderScreen} />
     </Stack.Navigator>
   )
 }
@@ -52,14 +81,32 @@ function EverythingStack(){
         component={MenuScreen} />
       <Stack.Screen 
         name="ViewOrderScreen"
-        options={{ title:'Your order' } }
+        options={{
+          title: 'Your order',
+          headerStyle: {
+            backgroundColor: '#1c1c1c',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
         title='Your order'
         component={ViewOrderScreen} />
-      <Stack.Screen
+      <Stack.Screen 
         name="TrackOrderScreen"
-        component={TrackOrderScreen}
-        options={{ title:'Order #123' }}
-        title='Order #123'/>
+        options={{
+          title: 'Order #123',
+          headerStyle: {
+            backgroundColor: '#1c1c1c',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        title='Order #123'
+        component={TrackOrderScreen} />
     </Stack.Navigator>
   )
 }
@@ -73,19 +120,32 @@ function ProfileStack(){
     >
       <Stack.Screen 
         name="Profile"
-        component={ProfileScreen}/>
+        component={ProfileScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: '#1c1c1c',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
     </Stack.Navigator>
   )
 }
 
 export default function App() {
   return (
-    <View style={{flex: 1 }}>
+    <View style={{flex: 1, backgroundColor: '#1c1c1c' }}>
+      <StatusBar
+        backgroundColor="#1c1c1c"
+        barStyle="light-content"
+      />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => (
           {
-            tabBarIcon: ({ focused, color, size }) => 
+            tabBarIcon: ({ color, size }) => 
             {
               let iconName;
               switch(route.name){
@@ -104,8 +164,13 @@ export default function App() {
           })}
           tabBarOptions={
             {
-              activeTintColor: 'tomato',
-              inactiveTintColor: 'gray',
+              activeTintColor: '#C11C10',
+              inactiveTintColor: '#949494',
+              style:{
+                backgroundColor: '#000000',
+                borderTopColor: "black"
+              }
+              
             }
           }>
           <Tab.Screen name="Home" component={EverythingStack} />

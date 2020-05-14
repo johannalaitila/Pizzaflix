@@ -10,7 +10,7 @@ export default function MenuScreen( ) {
   
   const [selectedCategory, setSelectedCategory] = useState("none");
   const [selectedDiet, setSelectedDiet] = useState("none");
-  const [searchValue, onSearchTextChange] = React.useState('');
+  const [searchValue, onSearchTextChange] = React.useState('Type here');
 
   return (
     <View style={Styles.container}>
@@ -18,6 +18,7 @@ export default function MenuScreen( ) {
         <View style={Styles.foodFilterDropdown}>
           <Picker
             selectedValue={selectedDiet}
+            style={{color: 'white'}}
             onValueChange={(itemValue) => setSelectedDiet(itemValue)}>
               <Picker.Item label="Filter by diet" value="none"/>
               <Picker.Item label="Vegetarian" value="vegetarian"/>
@@ -29,6 +30,7 @@ export default function MenuScreen( ) {
         </View>
         <View style={Styles.foodFilterDropdown}>
           <Picker
+            style={{color: 'white'}}
             selectedValue={selectedCategory}
             onValueChange={(itemValue) => setSelectedCategory(itemValue)}>
               <Picker.Item label="Filter by category" value="none"/>

@@ -6,11 +6,13 @@ export const Styles = StyleSheet.create({
     // Containers 
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#1c1c1c',
+      color: '#fff'
     },
     leftRightMargins:{
       marginLeft: 10,
-      marginRight: 10
+      marginRight: 10,
+      backgroundColor: '#1c1c1c'
     },
     row:{
       flexDirection: 'row',
@@ -29,16 +31,23 @@ export const Styles = StyleSheet.create({
       justifyContent: 'flex-end',
       marginRight: 10
     },
+    headerStyle:{
+      backgroundColor: "#1c1c1c"
+    },
 
     // Labels 
     categoryText:{
       fontWeight: 'bold',
-      marginLeft: 10
+      fontSize: 18,
+      marginLeft: 10,
+      color: 'white'
     },
     categoryTextTopMargin:{
       fontWeight: 'bold',
+      fontSize: 18,
       marginLeft: 10,
-      marginTop: 10
+      marginTop: 10,
+      color: 'white'
     },
 
     /* COMPONENTS */
@@ -48,7 +57,8 @@ export const Styles = StyleSheet.create({
       margin: 10,
       marginRight: 10,
       padding: 10,
-      backgroundColor: 'orange'
+      backgroundColor: '#505050',
+      borderRadius: 20
     },
     foodViewInfoContainer:{
         flex: 2.2,
@@ -56,22 +66,28 @@ export const Styles = StyleSheet.create({
     foodViewImageContainer:{
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-end'
     },
     foodNameText:{
         fontWeight: 'bold',
         fontSize: 18,
+        color: 'white'
     },
     foodViewImage:{
         width: 100,
-        height: 100
+        height: 100,
+        borderRadius: 40
     },
     dietText:{
         fontWeight: 'bold',
-        color: 'green'
+        color: '#09b542'
     },
     italicText:{
         fontStyle: 'italic',
+        color: 'white'
+    },
+    whiteText:{
+      color: 'white'
     },
     orderAmountTextInput: {
       paddingLeft: 10,
@@ -79,7 +95,9 @@ export const Styles = StyleSheet.create({
       height: 40, 
       width: 50,
       borderColor: 'gray',
-      borderWidth: 1 
+      borderWidth: 1,
+      color: 'white',
+      backgroundColor: '#666565'
     },
 
     /* SCREENS */
@@ -92,19 +110,35 @@ export const Styles = StyleSheet.create({
 
     // MenuScreen
     foodFilterDropdown: {
-      marginLeft: 10,
-      marginRight: 10,
+      marginLeft: 20,
+      marginRight: 20,
       marginBottom: 10,
       borderColor: 'gray',
-      borderWidth: 1
+      borderWidth: 1,
+      color: 'white',
+      backgroundColor: '#505050',
+      borderRadius: 5
     },
     foodSearchTextInput: {
-      //marginLeft: 10,
-      //paddingRight: 10,
+      marginRight: 10,
+      marginLeft: 10,
+      paddingLeft: 10,
       height: 40, 
-      width: 250,
+      width: 240,
       borderColor: 'gray',
-      borderWidth: 1 
-    }
+      borderWidth: 1 ,
+      color: 'white',
+      backgroundColor: '#505050',
+      borderRadius: 5
+    },
+
+    //ProfileScreen
+    historyOrder:{
+      margin: 10,
+      paddingLeft: 10,
+      paddingBottom: 10,
+      backgroundColor: '#505050',
+      borderRadius: 5
+    },
   }
 );

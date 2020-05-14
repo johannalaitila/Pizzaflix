@@ -15,17 +15,19 @@ export default function ViewOrderScreen({navigation}) {
   function listOrder(){
     for (let i = 0; i < order.length; i++) {
         list.push(
-          <View style={Styles.row}>
+          <View style={Styles.row} key={i}>
             <View style={{flex: 3}}>
-              <Text style={{marginTop: 5}}>{order[i][0]} - {order[i][1]}&euro;</Text>
+              <Text key={i} style={{marginTop: 5, color: 'white'}}>{order[i][0]} - {order[i][1]}&euro;</Text>
             </View>
-            <View style={{flex: 0.5, borderColor: 'gray', borderWidth: 1, paddingLeft: 5}}>
+            <View style={{flex: 0.5, marginRight: 25}}>
             <TextInput
               value='1'
+              style={Styles.orderAmountTextInput}
+
             />
             </View>
             <View style={{flex: 0.5}}>
-              <Text style={{marginTop: 5}}> pcs </Text>
+              <Text style={{marginTop: 5, color: 'white'}}> pcs </Text>
             </View>
             <View style={Styles.rowCell}>
               <Button title="Edit" />
@@ -37,89 +39,92 @@ export default function ViewOrderScreen({navigation}) {
   }
 
   return (
-    <ScrollView style={Styles.leftRightMargins}>
-      {listOrder()}
-      <View
-        style={{
-          marginTop: 5,
-          borderBottomColor: 'black',
-          borderBottomWidth: 1,
-        }}
-      />
-      <View style={Styles.row}>
-        <View style={Styles.rowCell}>
-          <Text>Total: {Order.getOrderTotal()}&euro;</Text>
+    <View style={Styles.container}>
+      <ScrollView style={Styles.leftRightMargins}>
+        {listOrder()}
+        <View
+          style={{
+            marginTop: 5,
+            borderBottomColor: '#505050',
+            borderBottomWidth: 1,
+          }}
+        />
+        <View style={Styles.row}>
+          <View style={Styles.rowCell}>
+            <Text style={Styles.whiteText}>Total: {Order.getOrderTotal()}&euro;</Text>
+          </View>
         </View>
-      </View>
-      <View style={Styles.row}>
-        <View style={{borderColor: 'gray', borderWidth: 1, width: '100%'}}>
-          <Picker
-            selectedValue={whereToEat}
-            onValueChange={(itemValue) => setWhereToEat(itemValue)}
-            style={{marginLeft: 0, width: '100%',
-            borderColor: 'gray',
-            borderWidth: 1}}>
-            <Picker.Item label="Where do you want to eat?" value="none"/>
-            <Picker.Item label="At the restaurant" value="pizza"/>
-            <Picker.Item label="Delivery" value="drink"/>
-          </Picker>
+        <View style={Styles.row}>
+          <View style={{borderColor: 'gray', borderWidth: 1, width: '100%'}}>
+            <Picker
+              selectedValue={whereToEat}
+              onValueChange={(itemValue) => setWhereToEat(itemValue)}
+              style={{marginLeft: 0, width: '100%',
+              borderColor: 'gray',
+              borderWidth: 1,
+              color: 'white'}}>
+              <Picker.Item label="Where do you want to eat?" value="none"/>
+              <Picker.Item label="At the restaurant" value="pizza"/>
+              <Picker.Item label="Delivery" value="drink"/>
+            </Picker>
+          </View>
         </View>
-      </View>
 
-      <View style={Styles.row}>
-        <Text style={{fontWeight: 'bold'}}>Delivery address</Text>
-      </View>
-      <View style={Styles.row}>
-        <View style={{flex: 2}}>
-          <Text style={{marginTop: 5}}>{UserInfo.getAddress()}</Text>
-          <Text style={{marginTop: 5}}>{UserInfo.getZipCode()} {UserInfo.getCity()}</Text>
+        <View style={Styles.row}>
+          <Text style={{fontWeight: 'bold', color: 'white'}}>Delivery address</Text>
         </View>
-        <View style={Styles.rowCell}>
-          <Button title="Change" />
+        <View style={Styles.row}>
+          <View style={{flex: 2}}>
+            <Text style={{marginTop: 5, color: 'white'}}>{UserInfo.getAddress()}</Text>
+            <Text style={{marginTop: 5, color: 'white'}}>{UserInfo.getZipCode()} {UserInfo.getCity()}</Text>
+          </View>
+          <View style={Styles.rowCell}>
+            <Button title="Change" />
+          </View>
         </View>
-      </View>
 
-      <View style={Styles.row}>
-        <Text style={{fontWeight: 'bold'}}>Contact information</Text>
-      </View>
-      <View style={Styles.row}>
-        <View style={{flex: 2}}>
-          <Text style={{marginTop: 5}}>{UserInfo.getPhone()}</Text>
-          <Text style={{marginTop: 5}}>{UserInfo.getEmail()}</Text>
+        <View style={Styles.row}>
+          <Text style={{fontWeight: 'bold', color: 'white'}}>Contact information</Text>
         </View>
-        <View style={Styles.rowCell}>
-          <Button title="Change" />
+        <View style={Styles.row}>
+          <View style={{flex: 2}}>
+            <Text style={{marginTop: 5, color: 'white'}}>{UserInfo.getPhone()}</Text>
+            <Text style={{marginTop: 5, color: 'white'}}>{UserInfo.getEmail()}</Text>
+          </View>
+          <View style={Styles.rowCell}>
+            <Button title="Change" />
+          </View>
         </View>
-      </View>
 
-      <View
-        style={{
-          marginTop: 5,
-          borderBottomColor: 'black',
-          borderBottomWidth: 1,
-        }}
-      />
-      <View style={Styles.row}>
-        <Text style={{fontWeight: 'bold'}}>Payment method</Text>
-      </View>
-      <View style={Styles.row}>
-        <View style={{flex: 2}}>
-          <Text style={{marginTop: 5}}>{UserInfo.getPayment()}</Text>
+        <View
+          style={{
+            marginTop: 5,
+            borderBottomColor: '#505050',
+            borderBottomWidth: 1,
+          }}
+        />
+        <View style={Styles.row}>
+          <Text style={{fontWeight: 'bold', color: 'white'}}>Payment method</Text>
         </View>
-        <View style={Styles.rowCell}>
-          <Button title="Change" />
+        <View style={Styles.row}>
+          <View style={{flex: 2}}>
+            <Text style={{marginTop: 5, color: 'white'}}>{UserInfo.getPayment()}</Text>
+          </View>
+          <View style={Styles.rowCell}>
+            <Button title="Change" />
+          </View>
         </View>
-      </View>
-      <View style={Styles.row}>
-        <View style={{flex: 1}} />
-        <View style={{flex: 1, marginTop: 20, marginBottom: 20}}>
-          <Button title="Order" 
-          onPress={() => {
-            navigation.navigate('TrackOrderScreen')
-        }}/>
+        <View style={Styles.row}>
+          <View style={{flex: 1}} />
+          <View style={{flex: 1, marginTop: 20, marginBottom: 20}}>
+            <Button title="Order" 
+            onPress={() => {
+              navigation.navigate('TrackOrderScreen')
+          }}/>
+          </View>
+          <View style={{flex: 1}} />
         </View>
-        <View style={{flex: 1}} />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }

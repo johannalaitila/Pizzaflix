@@ -8,8 +8,9 @@ var enabled = true;
 const styles = StyleSheet.create({
     incomingOrderText:{
       fontSize: 17,
-      color: 'rgba(96,100,109, 1)',
-     
+      color: 'white',
+      textAlign: 'center',
+      marginTop: 5
     },
     tabBarInfoContainer: {
       bottom: 0,
@@ -26,15 +27,11 @@ const styles = StyleSheet.create({
           elevation: 20,
         },
       }),
+      
       alignItems: 'center',
-      backgroundColor: '#fbfbfb',
+      backgroundColor: '#141414',
       paddingVertical: 20,
-    },
-    tabBarInfoText: {
-      fontSize: 17,
-      color: 'rgba(96,100,109, 1)',
-      textAlign: 'center',
-    },
+    }
   });
 
 export default function ViewOrderBar(props){
@@ -49,7 +46,7 @@ export default function ViewOrderBar(props){
           </View>
           
           <View style={{marginBottom: 0, marginLeft: 10}}>
-              <Button title="View" color="#841584" onPress={() => navigation.navigate('ViewOrderScreen')} />
+              <Button title="View" color="#3971DD" onPress={() => navigation.navigate('ViewOrderScreen')} />
           </View>
           </View>
       </View>

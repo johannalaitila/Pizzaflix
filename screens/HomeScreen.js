@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Image, Button } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import IncomingOrderBar from '../components/IncomingOrderBar';
 import FoodView from '../components/FoodView';
@@ -7,20 +7,14 @@ import ViewOrderBar from '../components/ViewOrderBar';
 import { Styles } from '../components/Styles';
 
 export default function HomeScreen() {
-  const splash = require('../assets/splash.png');
+  const logo = require('../assets/pizzaflix.png');
   
   return (
     <View style={Styles.container}>
-      <Image source={splash} style= {Styles.homeHeaderLogo} resizeMode='contain' />
+      <Image source={logo} style= {Styles.homeHeaderLogo} resizeMode='contain' />
       <ScrollView style={Styles.container}>
-
         <View style={Styles.leftRightMargins}>
-          <View style={Styles.row}>
-            <Text style={Styles.categoryTextTopMargin}>Order Again </Text>
-            <View style={Styles.alignRight}>
-              <Button title="Login" />
-            </View>
-          </View>
+          <Text style={Styles.categoryTextTopMargin}>Order Again </Text>
           <FoodView
             name='Fantasia'
             toppings={['Select topping 1', 'Select topping 2', 'Select topping 3', 'Select topping 4']}
